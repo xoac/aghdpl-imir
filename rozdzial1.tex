@@ -22,22 +22,31 @@ Celem poniższej pracy jest zapoznanie studentów z systemem \LaTeX~w zakresie u
 
 \section{Zawartość pracy}\label{sec:zawartoscPracy}
 
-W rozdziale~\ref{cha:pierwszyDokument} przedstawiono podstawowe informacje dotyczące struktury dokumentów w \LaTeX{}u. Alvis~\cite{Alvis2011} jest językiem 
+W rozdziale~\ref{cha:pierwszyDokument} przedstawiono podstawowe informacje dotyczące struktury dokumentów w \LaTeX{}u. Alvis~\cite{Alvis2011} jest językiem
 
 
 
+\chapter{Test}
+% BEGIN section 2
+\begin{tikzpicture}[scale=1]
+\tikzset{
+    pics/circle vertically split/.style 2 args = {
+       code = {
+         \pgfmathsetmacro{\widthOne}{width("#1")+4pt}
+         \pgfmathsetmacro{\widthTwo}{width("#2")+4pt}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+         \node[text=green](-this_is_currcent_center){+};
+         \node[xshift=-\widthOne/2] (-left) {#1};
+         \node[xshift=\widthTwo/2] (-right) {#2};
+         \node[fit=(-left)(-right),draw,circle,text=red](-shape) {+};
+         \node(-splitline) at ($ (-left.east)!.5!(-right.west) $) {};
+         \draw (-shape.north east -| -splitline.center) -- (-shape.south east -| -splitline.center);
+       }
+    }
+}
+% this doesn't center correctly but it's not part of this question
+\pic[inner sep = 1pt, align=left] (A) {circle vertically split={$Aaaaaa$}{$B$}};
+\pic[inner sep = 1pt, align=left, right = of A-shape] (B) {circle vertically split={A}{$Bbbbb$}};
+\end{tikzpicture}
+% END section 2
 
